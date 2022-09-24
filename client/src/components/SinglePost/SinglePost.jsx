@@ -1,28 +1,45 @@
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom'
+import axios from "axios";
 import './SinglePost.css'
 
 export const SinglePost = () => {
+
+    const location = useParams();
+    const path = location.postId;
+    const [post, setPost] = useState({})
+    const optionsDate = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    const date = new Date(post.createdAt).toLocaleDateString(undefined, optionsDate).split("")[0].toUpperCase() + new Date(post.createdAt).toLocaleDateString(undefined, optionsDate).slice(1);
+
+    useEffect(() => {
+      const getPost = async () => {
+        const res = await axios.get("/posts/" + path);
+        setPost(res.data);
+      }
+      getPost()
+    }, [path])
+    
+
     return (
         <div className='singlePost'>
             <div className="singlePostWrapper">
-                <img src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="singlePostImg" />
+                {post.photo && <img src={post.photo} alt="" className="singlePostImg" />}                
                 <h1 className="singlePostTitle">
-                    Lorem ipsum dolor sit amet
+                    {post.title}
                     <div className="singlePostEdit">
                         <i className="singlePostIcon fa-regular fa-edit"></i>
                         <i className="singlePostIcon fa-regular fa-trash-alt"></i>
                     </div>
                 </h1>
                 <div className="singlePostInfo">
-                    <span className='singlePostAuthor'>Autor: <b>Macc</b></span>
-                    <span className='singlePostDate'>1 hour ago</span>
+                    <span className='singlePostAuthor'>Autor:                    
+                        <Link className='link' to={`/?user=${post.username}`}>
+                            <b>{post.username}</b> 
+                        </Link>                   
+                    </span>
+                    <span className='singlePostDate'>{date}</span>
                 </div>
-                <p className='singlePostDescription'>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit esse eligendi explicabo fugiat. Accusantium nesciunt dicta dolorum, aliquam officia necessitatibus reiciendis placeat ratione eius soluta facere voluptatem magni tenetur commodi.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit esse eligendi explicabo fugiat. Accusantium nesciunt dicta dolorum, aliquam officia necessitatibus reiciendis placeat ratione eius soluta facere voluptatem magni tenetur commodi.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit esse eligendi explicabo fugiat. Accusantium nesciunt dicta dolorum, aliquam officia necessitatibus reiciendis placeat ratione eius soluta facere voluptatem magni tenetur commodi.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit esse eligendi explicabo fugiat. Accusantium nesciunt dicta dolorum, aliquam officia necessitatibus reiciendis placeat ratione eius soluta facere voluptatem magni tenetur commodi.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit esse eligendi explicabo fugiat. Accusantium nesciunt dicta dolorum, aliquam officia necessitatibus reiciendis placeat ratione eius soluta facere voluptatem magni tenetur commodi.
-                </p>
+                <p className='singlePostDescription'>{post.desc}</p>
             </div>
         </div>
     )
