@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import TopBar from "./components/TopBar/TopBar";
+import { Context } from "./context/Context";
 import { Home } from "./pages/Home/Home";
 import { Login } from "./pages/Login/Login";
 import { Register } from "./pages/Register/Register";
@@ -10,7 +12,7 @@ import { Write } from "./pages/Write/Write";
 
 function App() {
 
-  const user = false;
+  const { user } = useContext(Context);
 
   return (
     <>
