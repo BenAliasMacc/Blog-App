@@ -3,10 +3,12 @@ import { v4 as uuid } from 'uuid';
 import './Post.css'
 
 export const Post = ({ post }) => {
+
+    const publicFolder = "localhost:5000/images/"
     
     return (
         <div className='post'>
-            {post.photo && <img className='postImg' src={post.photo} alt='' />}            
+            {post.photo && <img className='postImg' src={publicFolder + post.photo} alt='' />}            
             <div className="postInfo">
                 <div className="postCats">
                     {post.categories.map((category) => <span className="postCat">{category.name}</span>)}
