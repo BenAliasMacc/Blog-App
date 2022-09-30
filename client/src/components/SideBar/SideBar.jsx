@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import { v4 as uuid } from "uuid";
 import './SideBar.css';
-import { Link } from 'react-router-dom';
+import sideBarImg from "../../assets/images/sideBarImg.png"
 
 export const SideBar = () => {
 
@@ -20,8 +21,8 @@ export const SideBar = () => {
     return (
         <div className='sidebar'>
             <div className="sidebarItem">
-                <span className="sidebarTitle">ABOUT ME</span>
-                <img className="sidebarImg"src="https://images.freeimages.com/images/large-previews/e04/yellow-frontal-with-ivy-1228121.jpg" alt='' />
+                <span className="sidebarTitle">A PROPOS DE NOUS</span>
+                <img className="sidebarImg"src={sideBarImg} alt='' />
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt animi praesentium quos ex corrupti, ad velit aliquid aperiam</p>
             </div>
             <div className="sidebarItem">
@@ -35,7 +36,7 @@ export const SideBar = () => {
                 </ul>
             </div>
             <div className="sidebarItem">
-                <span className="sidebarTitle">FOLLOW US</span>
+                <span className="sidebarTitle">SUIVEZ-NOUS</span>
                 <div className="sidebarSocial">
                     <i className="sidebarIcon fa-brands fa-square-facebook"></i>
                     <i className="sidebarIcon fa-brands fa-square-twitter"></i>

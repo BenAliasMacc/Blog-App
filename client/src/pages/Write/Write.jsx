@@ -37,7 +37,7 @@ export const Write = () => {
             console.log(res);
             navigate("/post/" + res.data._id);
         } catch (error) {
-            
+            console.log(error);
         };        
     };
 

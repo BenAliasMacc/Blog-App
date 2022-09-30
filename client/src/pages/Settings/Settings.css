@@ -23,6 +23,8 @@
     color: red;
     font-size: 12px;
     cursor: pointer;
+    background-color: inherit;
+    border: none;
 }
 
 .settingsForm {

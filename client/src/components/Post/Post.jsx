@@ -1,24 +1,25 @@
 import { Link } from "react-router-dom";
-import { v4 as uuid } from 'uuid';
 import './Post.css'
 
 export const Post = ({ post }) => {
 
-    const publicFolder = "localhost:5000/images/"
+    const optionsDate = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    const date = new Date(post.createdAt).toLocaleDateString(undefined, optionsDate).split("")[0].toUpperCase() + new Date(post.createdAt).toLocaleDateString(undefined, optionsDate).slice(1);
+    const publicFolder = "http://localhost:5000/images/"
     
     return (
         <div className='post'>
-            {post.photo && <img className='postImg' src={publicFolder + post.photo} alt='' />}            
-            <div className="postInfo">
-                <div className="postCats">
-                    {post.categories.map((category) => <span className="postCat">{category.name}</span>)}
+            <Link className="link" to={`/post/${post._id}`}>
+                {post.photo && <img className='postImg' src={publicFolder + post.photo} alt='' />}            
+                <div className="postInfo">
+                    <div className="postCats">
+                        {post.categories.map((category) => <span className="postCat">{category.name}</span>)}
+                    </div>
+                        <span className="postTitle">{post.title}</span>
+                    <span className="postDate">{date}</span>
                 </div>
-                <Link className="link" to={`/post/${post._id}`}>
-                    <span className="postTitle">{post.title}</span>
-                </Link>
-                <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
-            </div>
-            <p className='postDesc'>{post.desc}</p>
+                <p className='postDesc'>{post.desc}</p>
+            </Link>
         </div>
     )
 }

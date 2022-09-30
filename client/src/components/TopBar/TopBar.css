@@ -24,7 +24,7 @@
 .topIcon {
     font-size: 20px;
     margin-right: 10px;
-    color: #444;
+    color: #666;
     cursor: pointer;
 }
 
@@ -33,6 +33,7 @@
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .topList {
@@ -54,9 +55,67 @@
     
 }
 
+.topSearch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #666;
+    border-radius: 50px;
+    height: 30px;
+    width: 30px;
+    margin-left: 15px;
+    position: relative;
+    transition: width 0.2s ease-out;
+    backface-visibility: hidden;
+}
+
 .topSearchIcon {
+    position: absolute;
+    top: 6px;
+    left: 6px;
     font-size: 18px;
     color: #666;
     cursor: pointer;
-    margin-left: 15px;
+}
+
+.topSearchInput {
+    position: absolute;
+    left: 40px;
+    top: 5px;
+    font-size: 18px;
+    width: 0;
+    padding: 0;
+    color: #666;
+    border: none;
+    cursor: default;    
+    transition: width 0.2s ease-out;
+}
+
+.topSearchInput:focus {
+    outline: none;    
+}
+
+.topSearchIconClose {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    opacity: 0;
+    font-size: 18px;
+    color: #d9d9d9;
+    margin-right: 6px;
+    cursor: pointer;
+    z-index: -1;
+}
+
+.show {
+    width: 285px;
+}
+
+.show .topSearchInput {
+    width: 200px;
+}
+
+.show .topSearchIconClose {
+    opacity: 1;
+    z-index: 1;
 }
