@@ -27,13 +27,13 @@ export const Write = () => {
             data.append("file", file)
             newPost.photo = filename;
             try {
-                await axios.post("/upload", data);
+                await axios.post(`${process.env.API_URL}/upload`, data);
             } catch (error) {
                 
             };
         };
         try {
-            const res = await axios.post("/posts", newPost);
+            const res = await axios.post(`${process.env.API_URL}/posts`, newPost);
             console.log(res);
             navigate("/post/" + res.data._id);
         } catch (error) {

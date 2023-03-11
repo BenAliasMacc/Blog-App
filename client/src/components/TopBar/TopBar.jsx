@@ -7,7 +7,7 @@ import "./TopBar.css"
 const TopBar = () => {
 
     const { user, dispatch } = useContext(Context);
-    const publicFolder = "http://localhost:8000/images/";
+    const publicFolder = `${process.env.API_URL}/images/`;
     const [displayInput, setDisplayInput] = useState(false);
 
     console.log(displayInput);

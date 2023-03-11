@@ -11,7 +11,7 @@ export const SideBar = () => {
 
     useEffect(() => {
         const getCats = async () => {
-            const res = await axios.get("/categories");
+            const res = await axios.get(`${process.env.API_URL}/categories`);
             setCats(res.data);
         }
         getCats();

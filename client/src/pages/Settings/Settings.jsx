@@ -9,7 +9,7 @@ export const Settings = () => {
 
     const { user, dispatch } = useContext(Context);
     const path = user._id;
-    const publicFolder = "http://localhost:8000/images/";
+    const publicFolder = `${process.env.API_URL}/images/`;
     const [username, setUsername] = useState(user.username);
     const [email, setEmail] = useState(user.email);
     const [password, setPassword] = useState(user.password);
