@@ -9,12 +9,14 @@ export const Settings = () => {
 
     const { user, dispatch } = useContext(Context);
     const path = user._id;
-    const publicFolder = "http://localhost:5000/images/";
+    const publicFolder = "http://localhost:8000/images/";
     const [username, setUsername] = useState(user.username);
     const [email, setEmail] = useState(user.email);
     const [password, setPassword] = useState(user.password);
     const [file, setFile] = useState(null);
     const [success, setSuccess] = useState(false);
+
+    console.log(user.password);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -94,7 +96,7 @@ export const Settings = () => {
                     <label>Mot de passe</label>
                     <input 
                         type="password"
-                        value={email}
+                        value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <button className="settingsSubmit" type='submit'>Mettre à jour</button>
