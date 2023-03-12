@@ -4,6 +4,7 @@ import axios from "axios";
 import './SinglePost.css'
 import { useContext } from 'react';
 import { Context } from '../../context/Context';
+import baseURL from '../../api/api'
 
 export const SinglePost = () => {
 
@@ -17,11 +18,11 @@ export const SinglePost = () => {
     const [updateMode, setUpdateMode] = useState(false);
     const optionsDate = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
     const date = new Date(post.createdAt).toLocaleDateString(undefined, optionsDate).split("")[0].toUpperCase() + new Date(post.createdAt).toLocaleDateString(undefined, optionsDate).slice(1);
-    const publicFolder = `${process.env.API_URL}/images/`;
+    const publicFolder = `${baseURL}/images/`;
 
     useEffect(() => {
       const getPost = async () => {
-        const res = await axios.get(`${process.env.API_URL}/posts/` + path);
+        const res = await axios.get(`${baseURL}/api/posts/` + path);
         setPost(res.data);
         setTitle(res.data.title);
         setDesc(res.data.desc);
@@ -31,7 +32,7 @@ export const SinglePost = () => {
     
     const handleDelete = async () => {
         try {
-            await axios.delete(`${process.env.API_URL}/posts/` + path, {
+            await axios.delete(`${baseURL}/api/posts/` + path, {
                 data: {username: user.username}
             });
             navigate("/");
@@ -42,7 +43,7 @@ export const SinglePost = () => {
 
     const handleUpdate = async () => {
         try {
-            await axios.put(`${process.env.API_URL}/posts/` + path, {
+            await axios.put(`${baseURL}/api/posts/` + path, {
                 username: user.username,
                 title,
                 desc,

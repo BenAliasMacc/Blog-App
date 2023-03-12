@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom"
 import { Context } from "../../context/Context";
-import "./TopBar.css"
+import "./TopBar.css";
+import baseURL from '../../api/api';
 
 const TopBar = () => {
 
     const { user, dispatch } = useContext(Context);
-    const publicFolder = `${process.env.API_URL}/images/`;
+    const publicFolder = `${baseURL}/images/`;
     const [displayInput, setDisplayInput] = useState(false);
 
     console.log(displayInput);

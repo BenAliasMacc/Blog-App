@@ -5,6 +5,7 @@ import { Posts } from "../../components/Posts/Posts";
 import { SideBar } from "../../components/SideBar/SideBar";
 import { Header } from "../../components/Header/Header";
 import "./Home.css";
+import baseURL from '../../api/api'
 
 
 export const Home = () => {
@@ -12,9 +13,11 @@ export const Home = () => {
     const [posts, setPosts] = useState([])
     const { search } = useLocation();
 
+    console.log(baseURL);
+
     useEffect(() => {
       const fetchPosts = async () => {
-        const res = await axios.get(`${process.env.API_URL}/posts`+search);
+        const res = await axios.get(`${baseURL}/api/posts`+search);
         setPosts(res.data)
       }
       fetchPosts()

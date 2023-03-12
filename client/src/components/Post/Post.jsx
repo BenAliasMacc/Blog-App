@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import './Post.css'
+import baseURL from '../../api/api'
 
 export const Post = ({ post }) => {
 
     const optionsDate = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
     const date = new Date(post.createdAt).toLocaleDateString(undefined, optionsDate).split("")[0].toUpperCase() + new Date(post.createdAt).toLocaleDateString(undefined, optionsDate).slice(1);
-    const publicFolder = `${process.env.API_URL}/images/`
+    const publicFolder = `${baseURL}/images/`
     
     return (
         <div className='post'>

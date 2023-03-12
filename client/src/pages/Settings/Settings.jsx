@@ -3,13 +3,14 @@ import { useState } from 'react'
 import { useContext } from 'react'
 import { SideBar } from '../../components/SideBar/SideBar'
 import { Context } from '../../context/Context'
-import './Settings.css'
+import './Settings.css';
+import baseURL from '../../api/api'
 
 export const Settings = () => {
 
     const { user, dispatch } = useContext(Context);
     const path = user._id;
-    const publicFolder = `${process.env.API_URL}/images/`;
+    const publicFolder = `${baseURL}/images/`;
     const [username, setUsername] = useState(user.username);
     const [email, setEmail] = useState(user.email);
     const [password, setPassword] = useState(user.password);

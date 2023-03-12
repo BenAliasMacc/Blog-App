@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../../context/Context';
 import './Write.css';
+import baseURL from '../../api/api';
 
 export const Write = () => {
 
@@ -27,13 +28,13 @@ export const Write = () => {
             data.append("file", file)
             newPost.photo = filename;
             try {
-                await axios.post(`${process.env.API_URL}/upload`, data);
+                await axios.post(`${baseURL}/upload`, data);
             } catch (error) {
                 
             };
         };
         try {
-            const res = await axios.post(`${process.env.API_URL}/posts`, newPost);
+            const res = await axios.post(`${baseURL}/api/posts`, newPost);
             console.log(res);
             navigate("/post/" + res.data._id);
         } catch (error) {

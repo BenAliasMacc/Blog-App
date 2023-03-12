@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Register.css';
+import baseURL from '../../api/api'
 
 export const Register = () => {
 
@@ -14,7 +15,7 @@ export const Register = () => {
         e.preventDefault();
         setError(false);
         try {
-            const res = await axios.post(`${process.env.API_URL}/auth/register`, {
+            const res = await axios.post(`${baseURL}/api/auth/register`, {
                 username,
                 email,
                 password,

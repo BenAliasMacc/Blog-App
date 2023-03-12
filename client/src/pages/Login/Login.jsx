@@ -2,7 +2,8 @@ import axios from 'axios';
 import { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom'
 import { Context } from '../../context/Context';
-import './Login.css'
+import './Login.css';
+import baseURL from '../../api/api'
 
 export const Login = () => {
 
@@ -14,7 +15,7 @@ export const Login = () => {
         e.preventDefault();
         dispatch({type: "LOGIN_START"})
         try {
-            const res = await axios.post(`${process.env.API_URL}/auth/login`, {
+            const res = await axios.post(`${baseURL}/api/auth/login`, {
                 username: userRef.current.value,
                 password: passwordRef.current.value,
             })

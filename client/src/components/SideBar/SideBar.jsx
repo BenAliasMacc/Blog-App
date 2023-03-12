@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { v4 as uuid } from "uuid";
 import './SideBar.css';
-import sideBarImg from "../../assets/images/sideBarImg.png"
+import sideBarImg from "../../assets/images/sideBarImg.png";
+import baseURL from '../../api/api';
 
 export const SideBar = () => {
 
@@ -11,7 +12,7 @@ export const SideBar = () => {
 
     useEffect(() => {
         const getCats = async () => {
-            const res = await axios.get(`${process.env.API_URL}/categories`);
+            const res = await axios.get(`${baseURL}/api/categories`);
             setCats(res.data);
         }
         getCats();
