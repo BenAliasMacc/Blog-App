@@ -17,8 +17,6 @@ export const Settings = () => {
     const [file, setFile] = useState(null);
     const [success, setSuccess] = useState(false);
 
-    console.log(user.password);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch({type: "UPDATE_START"})
@@ -35,13 +33,13 @@ export const Settings = () => {
             data.append("file", file)
             updatedUser.profilePic = filename;
             try {
-                await axios.post("/upload", data);
+                await axios.post(`${baseURL}/api/upload`, data);
             } catch (error) {
                 
             };
         };
         try {
-            const res = await axios.put("/users/" + path, updatedUser);
+            const res = await axios.put(`${baseURL}/api/users/` + path, updatedUser);
             setSuccess(true);
             dispatch({type: "UPDATE_SUCCESS", payload: res.data})
         } catch (error) {
@@ -52,7 +50,7 @@ export const Settings = () => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete("/users/"+path, {
+            await axios.delete(`${baseURL}/api/users/`+path, {
                 data: {userId: user._id}
             })
             dispatch({type: "LOGOUT"})

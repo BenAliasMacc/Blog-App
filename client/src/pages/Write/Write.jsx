@@ -28,9 +28,9 @@ export const Write = () => {
             data.append("file", file)
             newPost.photo = filename;
             try {
-                await axios.post(`${baseURL}/upload`, data);
+                await axios.post(`${baseURL}/api/upload`, data);
             } catch (error) {
-                
+                console.log(error)
             };
         };
         try {
